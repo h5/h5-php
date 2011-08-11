@@ -2,7 +2,7 @@
 !defined('DIR_SOURCES') and define ('DIR_SOURCES', dirname(__FILE__));
 foreach(array('M', 'V', 'C', 'Z') as $v) !defined('DIR_'.$v) and define ('DIR_'.$v, DIR_SOURCES.'/'.strtolower($v).'/'); unset($v);
 
-//view!
+//view
 function view($_file, $_view_vars=array()) {
   extract($_view_vars, EXTR_SKIP);
   ob_start();
@@ -14,7 +14,7 @@ function view($_file, $_view_vars=array()) {
 }
 
 
-//controller? path/to/file:fucntion, path/to/class::static, path/to/class:::method
+//controller path/to/file:function, path/to/class::static, path/to/class:::method
 function action($action=null) {
   list ($path, $action) = explode(':', $action, 2) + array('', '');
   if (file_exists($file = DIR_C.$path.'.php')) {
@@ -32,20 +32,7 @@ function action($action=null) {
   echo view('http/404', array('error' => 'Controller not found')); return false;
 }
 
-//controller?
-function action2($action=null) {
-  list ($path, $action) = explode('::', $action) + array('', '');
-  if (file_exists($file = DIR_C.trim($path, '/').'.php')) {
-    if(!$action) return require $file;
-    require_once $file;
-    $path = explode('/', $path); $class = end($path); unset($path);
-    if (class_exists($class) && is_callable(array($class, $action))) { $class = new $class; return $class->$action(); }
-    elseif (function_exists($action)) return $action();
-  }
-  echo view('http/404', array('error' => 'Controller not found')); return false;
-}
-
-//model?
+//model
 function pdo() {
   static $p = false;
   !defined('DB_DSN') and define('DB_DSN', 'sqlite:'.DIR_SOURCES.'/.db'); !defined('DB_USER') and define('DB_USER', 'root'); !defined('DB_PASSWORD') and define('DB_PASSWORD', '');
