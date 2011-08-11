@@ -10,8 +10,8 @@ RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule .* - [L]
 
 #css generator
-RewriteRule ^h5$                                index.php                    [L,E=ACTION:h5/::h5_css_generate]
-RewriteRule ^h5/form$                           index.php                    [L,E=ACTION:h5/::h5_css_form]
+RewriteRule ^h5$                                index.php                    [L,E=ACTION:h5:h5_css_generate]
+RewriteRule ^h5/form$                           index.php                    [L,E=ACTION:h5:h5_css_form]
 
 #html
 RewriteRule ^(.*).html$                         index.php?page=$1            [L,E=ACTION:html,QSA]

@@ -13,8 +13,27 @@ function view($_file, $_view_vars=array()) {
   return $__ogc;
 }
 
-//controller?
+
+//controller? path/to/file:fucntion, path/to/class::static, path/to/class:::method
 function action($action=null) {
+  list ($path, $action) = explode(':', $action, 2) + array('', '');
+  if (file_exists($file = DIR_C.$path.'.php')) {
+    if (!$action) return require $file;
+    require_once $file;
+    if (trim($action, ':') && $action[0] == ':') {
+      $path = explode('/', $path);
+      if (class_exists($class = end($path))) {
+        if($action[1] == ':') $class = new $class;
+        $action = array($class,  trim($action, ':'));
+      }
+    }
+    if (is_callable($action)) return call_user_func($action);
+  }
+  echo view('http/404', array('error' => 'Controller not found')); return false;
+}
+
+//controller?
+function action2($action=null) {
   list ($path, $action) = explode('::', $action) + array('', '');
   if (file_exists($file = DIR_C.trim($path, '/').'.php')) {
     if(!$action) return require $file;

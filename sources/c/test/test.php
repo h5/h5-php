@@ -1,12 +1,12 @@
 <?php
 if ($action) return;
 
-action('test/test::method');
+action('test/test:::method');
 action('test/test::static_method');
-action('test/test/::test_function');
+action('test/test:test_function');
 
 class test {
-  public function __construct() { echo __METHOD__ . ' '; $this->var = 'val'; }
+  public function __construct() { $this->var = 'val'; }
   static public function static_method()  { echo __METHOD__ . PHP_EOL; }
          public function method()         { echo __METHOD__ . PHP_EOL; }
 }
