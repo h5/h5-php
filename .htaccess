@@ -1,5 +1,6 @@
 RewriteEngine On
 
+
 #RewriteBase /h5/php
 
 #less // uncomment if you want to use less
