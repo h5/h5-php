@@ -20,8 +20,8 @@ RewriteRule ^(.*).html$                         index.php?page=$1            [L,
 RewriteRule ^$                                  index.php?page=index         [L,E=ACTION:html,QSA]
 
 #default routes :: should be commented...
-#RewriteRule ^([a-z]+)$                          index.php                    [L,E=C:index,E=A:$1]
-#RewriteRule ^([a-z]+)/([a-z]+)$                 index.php                    [L,E=C:$1,E=A:$2]
+#RewriteRule ^([a-z]+)$                          index.php                    [L,E=ACTION:$1]
+#RewriteRule ^([a-z]+)/([a-z]+)$                 index.php                    [L,E=ACTION:$1:$2]
 
 #this rule must be last  :: c -> empty or nonexistent %controller-file%.php to show 404
 #RewriteCond %{REQUEST_FILENAME} !-f
