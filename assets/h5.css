@@ -112,7 +112,7 @@ label.title.column {margin-top: 1.5em; margin-bottom: 1.5em;}
 
 /* grid.css */
 .container {width:950px;margin:0 auto;}
-.showgrid {background:url(assets/i/grid.png);}
+.showgrid {background:url(/assets/i/grid.png);}
 .q {margin-left: 10px }
 .s {margin-right: 10px}
 .q0 {padding-left: 10px}
