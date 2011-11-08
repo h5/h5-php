@@ -14,7 +14,7 @@ function view($_file, $_view_vars=array()) {
 }
 
 
-//controller path/to/file:function, path/to/class::static, path/to/class:::method
+//controller path/to/file, path/to/file:function, path/to/class::static, path/to/class:::non-static
 function action($action=null) {
   list ($path, $action) = explode(':', $action, 2) + array('', '');
   if (file_exists($file = DIR_C.$path.'.php')) {
