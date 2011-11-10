@@ -42,8 +42,8 @@ function pdo() {
   return $p;
 }
 
-//debug?
-function qwe() {
+//wtf?
+function wtf() {
   echo '<pre>', PHP_EOL,
   print_r(array_slice(debug_backtrace(), 0, 5), true),
   str_repeat('-', 80), PHP_EOL, date('r'),
