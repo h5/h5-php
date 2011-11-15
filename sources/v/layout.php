@@ -1,6 +1,7 @@
 <div class="wrap">
   <div class="container<?php isset($_GET['showgrid']) and print ' showgrid'?>">
-    <?php echo $_content ?>
+    
+<?php echo $_content ?>
     
   </div>
 </div>
