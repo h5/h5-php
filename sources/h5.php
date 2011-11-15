@@ -3,8 +3,8 @@
 foreach(array('M', 'V', 'C', 'Z') as $v) !defined('DIR_'.$v) and define ('DIR_'.$v, DIR_SOURCES.'/'.strtolower($v).'/'); unset($v);
 
 //view
-function view($_file, $_view_vars=array()) {
-  extract($_view_vars, EXTR_SKIP);
+function view($_file, $_vars=array()) {
+  extract($_vars, EXTR_SKIP);
   ob_start();
   if (file_exists(DIR_V.$_file.'.php')) include DIR_V.$_file.'.php';
   else throw new Exception("View `$_file` not found.");
