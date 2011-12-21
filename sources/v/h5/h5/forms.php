@@ -33,11 +33,13 @@ textarea {width:390px;height:250px;padding:<?php echo $textarea_padding ?>px;}
 .inline {line-height:2;}
 .inline p {margin-bottom:0;}
 .inline label {font-weight: normal !important}
+
 .error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
 .notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
 .success {background:#e6efc2;color:#264409;border-color:#c6d880;}
 .info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+
 .error a, .alert a {color:#8a1f11;}
 .notice a {color:#514721;}
 .success a {color:#264409;}
