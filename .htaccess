@@ -15,6 +15,10 @@ RewriteRule .* - [L]
 RewriteRule ^h5$                                index.php                    [L,E=ACTION:h5:h5_css_generate]
 RewriteRule ^h5/form$                           index.php                    [L,E=ACTION:h5:h5_css_form]
 
+#hello world
+RewriteRule ^hello/(\w+)$                       index.php?world=$1           [L,E=ACTION:hello]
+RewriteRule ^hello/?$                           index.php?world=world        [L,E=ACTION:hello]
+
 #html
 RewriteRule ^(.*).html$                         index.php?page=$1            [L,E=ACTION:html,QSA]
 RewriteRule ^$                                  index.php?page=index         [L,E=ACTION:html,QSA]
