@@ -1,9 +1,9 @@
 <?php
 if ($action) return;
 
-action('test/test:::method');
-action('test/test::static_method');
-action('test/test:test_function');
+action('h5/test:::method');
+action('h5/test::static_method');
+action('h5/test:test_function');
 
 class test {
   public function __construct() { $this->var = 'val'; }
