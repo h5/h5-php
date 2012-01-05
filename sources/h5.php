@@ -15,7 +15,7 @@ function view($_file, $_vars=array()) {
 
 
 //controller path/to/file, path/to/file:function, path/to/class::static, path/to/class:::non-static
-function action($action=null) {
+function action($action=null, $_vars = array()) {
   list ($path, $action) = explode(':', $action, 2) + array('', '');
   if (file_exists($file = DIR_C.$path.'.php')) {
     if (!$action) return require $file;
@@ -27,7 +27,7 @@ function action($action=null) {
         $action = array($class,  trim($action, ':'));
       }
     }
-    if (is_callable($action)) return call_user_func($action);
+    if (is_callable($action)) return call_user_func_array($action, $_vars);
   }
   echo view('http/404', array('error' => 'Controller not found')); return false;
 }
