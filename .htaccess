@@ -12,8 +12,8 @@ RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule .* - [L]
 
 #css generator
-RewriteRule ^h5$                                index.php                    [L,E=ACTION:h5:h5_css_generate]
-RewriteRule ^h5/form$                           index.php                    [L,E=ACTION:h5:h5_css_form]
+RewriteRule ^h5$                                index.php                    [L,E=ACTION:h5/h5::css_generate]
+RewriteRule ^h5/form$                           index.php                    [L,E=ACTION:h5/h5::css_form]
 
 #hello world
 RewriteRule ^hello/(\w+)$                       index.php?world=$1           [L,E=ACTION:hello]
