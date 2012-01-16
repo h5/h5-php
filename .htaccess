@@ -1,11 +1,9 @@
 RewriteEngine On
 
-
-#RewriteBase /h5/php
+#RewriteBase /path/to/h5
 
 #less // uncomment if you want to use less
 #RewriteRule ^assets/([a-z0-9\-]+).less$         index.php?file=$1            [L,E=ACTION:less]
-
 
 #catches all files
 RewriteCond %{REQUEST_FILENAME} -f
