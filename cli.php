@@ -1,9 +1,5 @@
 #!/usr/bin/env php
 <?php
-error_reporting(E_ALL | E_STRICT); ini_set("display_errors", 1);
-
-define ('URI_BASE', '');
-define ('URI', '');
 
 foreach (array_slice($argv, 1) as $v)
   if ($v[0] != '-')
@@ -14,7 +10,9 @@ foreach (array_slice($argv, 1) as $v)
     $arr = explode('=', trim($v, '- '));
     $_GET[$arr[0]] = isset($arr[1]) ? implode('=', array_slice($arr, 1)) : true;
   }
-unset($v);
+unset($v, $arr);
+
+require 'sources/cfg.php';
 
 require 'sources/h5.php';
 
