@@ -44,7 +44,7 @@ function pdo() {
 
 //wtf?
 function wtf() {
-  if (strncasecmp(PHP_SAPI, 'cli', 3)) echo '<pre>';
+  if (PHP_SAPI == 'cli') echo '<pre>';
   if (func_num_args()) var_dump(func_get_args());
   else var_dump(array_slice(debug_backtrace(), 1, 5));
   echo $hr = str_repeat('-', 80), PHP_EOL;

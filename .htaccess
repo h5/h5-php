@@ -1,15 +1,15 @@
 RewriteEngine On
 
-
-#RewriteBase /h5/php
+#RewriteBase /path/to/h5
 
 #less // uncomment if you want to use less
 #RewriteRule ^assets/([a-z0-9\-]+).less$         index.php?file=$1            [L,E=ACTION:less]
 
-
 #catches all files
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule .* - [L]
+
+#ADD YOUR ROUTES below VVV
 
 #css generator
 RewriteRule ^h5$                                index.php                    [L,E=ACTION:h5/h5::css_generate]
@@ -27,12 +27,12 @@ RewriteRule ^$                                  index.php?page=index         [L,
 #RewriteRule ^([a-z]+)$                          index.php                    [L,E=ACTION:$1]
 #RewriteRule ^([a-z]+)/([a-z]+)$                 index.php                    [L,E=ACTION:$1:$2]
 
-#this rule must be last  :: c -> empty or nonexistent %controller-file%.php to show 404
-#RewriteCond %{REQUEST_FILENAME} !-f
+#this rule must be last  :: E -> nonexistent %controller-file%.php to show 404
+#or you can write your own controller to handle 404 errors
 RewriteRule ^(.*)$ index.php [L,E=ACTION:]
 
 #deny direct access
-<FilesMatch (index|cli).php>
+<FilesMatch index.php|cli>
   Order allow,deny
   Allow from env=REDIRECT_ACTION
 </FilesMatch>
