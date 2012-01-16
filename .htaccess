@@ -28,7 +28,7 @@ RewriteRule ^$                                  index.php?page=index         [L,
 RewriteRule ^(.*)$ index.php [L,E=ACTION:]
 
 #deny direct access
-<FilesMatch (index|cli).php>
+<FilesMatch index.php|cli>
   Order allow,deny
   Allow from env=REDIRECT_ACTION
 </FilesMatch>
