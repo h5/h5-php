@@ -1,5 +1,5 @@
 Hello <?php echo $world; ?>!
 
 <?php
-// декорирование
+// decorate this template
 $_decorator = 'layout';
