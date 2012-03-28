@@ -42,6 +42,7 @@ function pdo() {
   return $p;
 }
 
+
 //wtf?
 function wtf() {
   if (PHP_SAPI == 'cli') echo '<pre>';
