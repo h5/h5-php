@@ -13,9 +13,9 @@ function view($_file, $_vars=array()) {
   return $__ogc;
 }
 
-
 //controller path/to/file, path/to/file:function, path/to/class::static, path/to/class:::non-static
 function action($action=null, $_vars = array()) {
+  if ($action instanceof Closure) return $action();
   list ($path, $action) = explode(':', $action, 2) + array('', '');
   if (file_exists($file = DIR_C.$path.'.php')) {
     if (!$action) return require $file;
@@ -32,10 +32,32 @@ function action($action=null, $_vars = array()) {
   echo view('http/404', array('error' => 'Controller not found')); return false;
 }
 
+function route($routes) {
+  if (!$_POST)
+    $method = 'GET';
+  else
+    $method = isset($_REQUEST['method']) ? strtoupper($_REQUEST['method']) : 'POST';
+  foreach ($routes as $rule => $route) {
+    $route = (array)$route + array(null, 'GET');
+    if (
+      ($route[1] == '*' || false !== strpos(strtoupper($route[1]), $method))
+      &&
+      preg_match('/'.str_replace('/','\/',$rule).'/', $_SERVER['REQUEST_URI'], $matches)
+    ) {
+
+      foreach ($matches as $k => $match) if (is_string($k)) $_GET[$k] = $match;
+      return $route[0];
+    }
+  }
+  return null;
+}
+
 //model
 function pdo() {
   static $p = false;
-  !defined('DB_DSN') and define('DB_DSN', 'sqlite:'.DIR_SOURCES.'/.db'); !defined('DB_USER') and define('DB_USER', 'root'); !defined('DB_PASSWORD') and define('DB_PASSWORD', '');
+  !defined('DB_DSN') and define('DB_DSN', 'sqlite:'.DIR_SOURCES.'/.db');
+  !defined('DB_USER') and define('DB_USER', 'root');
+  !defined('DB_PASSWORD') and define('DB_PASSWORD', '');
   if ($p === false)
     try { $p = new PDO(DB_DSN, DB_USER, DB_PASSWORD); $p->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); }
     catch (PDOException $e) { view('http/500', array('error' => $e->getMessage())); }
@@ -44,7 +66,7 @@ function pdo() {
 
 //wtf?
 function wtf() {
-  if (PHP_SAPI == 'cli') echo '<pre>';
+  if (PHP_SAPI != 'cli') echo '<pre>';
   if (func_num_args()) var_dump(func_get_args());
   else var_dump(array_slice(debug_backtrace(), 1, 5));
   echo $hr = str_repeat('-', 80), PHP_EOL;
