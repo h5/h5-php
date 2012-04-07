@@ -4,13 +4,14 @@ foreach(array('M', 'V', 'C', 'Z') as $v) !defined('DIR_'.$v) and define ('DIR_'.
 
 //view
 function view($_file, $_vars=array()) {
+  static $_super = array();
   extract($_vars, EXTR_SKIP);
   ob_start();
   if (file_exists($_file = DIR_V.$_file.'.php')) include $_file;
   else throw new Exception("View `$_file` not found.");
-  $__ogc = ob_get_clean();
-  if ((isset($_decorator) && $_decorator !== false)) $__ogc = view($_decorator, array("_content"  => $__ogc));
-  return $__ogc;
+  $ogc = ob_get_clean();
+  if ((isset($_decorator) && $_decorator !== false)) $ogc = view($_decorator, array("_content"  => $ogc));
+  return $ogc;
 }
 
 //controller path/to/file, path/to/file:function, path/to/class::static, path/to/class:::non-static
