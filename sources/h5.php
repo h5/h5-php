@@ -33,26 +33,6 @@ function action($action=null, $_vars = array()) {
   echo view('http/404', array('error' => 'Controller not found')); return false;
 }
 
-function route($routes) {
-  if (!$_POST)
-    $method = 'GET';
-  else
-    $method = isset($_REQUEST['method']) ? strtoupper($_REQUEST['method']) : 'POST';
-  foreach ($routes as $rule => $route) {
-    $route = (array)$route + array(null, 'GET');
-    if (
-      ($route[1] == '*' || false !== strpos(strtoupper($route[1]), $method))
-      &&
-      preg_match('/'.str_replace('/','\/',$rule).'/', $_SERVER['REQUEST_URI'], $matches)
-    ) {
-
-      foreach ($matches as $k => $match) if (is_string($k)) $_GET[$k] = $match;
-      return $route[0];
-    }
-  }
-  return null;
-}
-
 //model
 function pdo() {
   static $p = false;
