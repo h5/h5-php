@@ -1,9 +1,8 @@
 <?php
 /** @var $routes array */
-if (!$_POST)
-  $method = 'GET';
-else
-  $method = isset($_REQUEST['method']) ? strtoupper($_REQUEST['method']) : 'POST';
+
+if (isset($_POST['method'])) $method = strtoupper($POST['method']);
+else $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
 
 define('METHOD', $method);
 
