@@ -36,9 +36,6 @@ function action($action=null, $_vars = array()) {
 //model
 function pdo() {
   static $p = false;
-  !defined('DB_DSN') and define('DB_DSN', 'sqlite:'.DIR_SOURCES.'/.db');
-  !defined('DB_USER') and define('DB_USER', 'root');
-  !defined('DB_PASSWORD') and define('DB_PASSWORD', '');
   if ($p === false)
     try { $p = new PDO(DB_DSN, DB_USER, DB_PASSWORD); $p->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); }
     catch (PDOException $e) { view('http/500', array('error' => $e->getMessage())); }
