@@ -1,6 +1,4 @@
 <?php
-!defined('DIR_SOURCES') and define ('DIR_SOURCES', dirname(__FILE__));
-foreach(array('M', 'V', 'C', 'Z') as $v) !defined('DIR_'.$v) and define ('DIR_'.$v, DIR_SOURCES.'/'.strtolower($v).'/'); unset($v);
 
 //view
 function view($_file, $_vars=array()) {
