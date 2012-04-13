@@ -8,10 +8,11 @@ define('METHOD', $method);
 
 foreach ($routes as $rule => $route) {
   $route = (array)$route + array(null, 'GET');
+  $uri = explode('?', $_SERVER['REQUEST_URI']);
   if (
     ($route[1] == '*' || false !== strpos(strtoupper($route[1]), $method))
     &&
-    preg_match('/'.str_replace('/','\/',$rule).'/', $_SERVER['REQUEST_URI'], $matches)
+    preg_match('/'.str_replace('/','\/',$rule).'/', $uri[0], $matches)
   ) {
 
     foreach ($matches as $k => $match) if (is_string($k)) $_GET[$k] = $match;
