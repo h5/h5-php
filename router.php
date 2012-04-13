@@ -1,9 +1,13 @@
 <?php
 //php54/php -S localhost:8000 -t . router.php
-require_once 'sources/h5.php';
 
-if (false === route(array(
-  '\.(?:png|jpg|jpeg|gif|css|ico)$' => false,
-))) return false;
+if (
+  preg_match('/\.(?:png|jpg|jpeg|gif)$/',$_SERVER["REQUEST_URI"])
+  AND
+  file_exists(__DIR__ . '/' . $_SERVER['REQUEST_URI'])
+)
+{
+  return false; // serve the requested resource as-is.
+}
 
-require 'index.php';
+include_once 'index.php';

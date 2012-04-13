@@ -4,8 +4,8 @@ require_once 'sources/h5.php';
 
 $routes = array(
 
-  '^/h5$'       => array('h5/h5::css_generate', 'get'),
-  '^/h5/form$'  => array('h5/h5::css_form', 'get'),
+  '^/h5/form$'  => array('h5/css/form', 'get'),
+  '^/h5\.css'       => array('h5/css/generate', 'get'),
 
   '^/(?<page>[\w-]+).html$' => array('html', 'get'),
   '^/$'                     => array('html', 'get'),
@@ -14,4 +14,4 @@ $routes = array(
 );
 
 
-return action(route($routes));
+return action(action('h5/route', array('routes' => $routes)));

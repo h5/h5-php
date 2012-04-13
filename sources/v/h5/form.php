@@ -1,4 +1,4 @@
-<form action="<?php echo URI_BASE ?>/h5" method="get">
+<form action="<?php echo URI_BASE ?>/h5.css" method="get">
 
   <fieldset class="w18">
     <legend>Grid generator</legend>
