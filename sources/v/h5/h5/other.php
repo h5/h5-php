@@ -8,7 +8,7 @@ hr.space {background:#fff; color:#fff; visibility:hidden;}
 
  /* sticky footer */
 html, body {height: 100%;}
-.wrap {min-height: 100%;}
+.wrap {min-height: 100%; width:<?php echo $page_width ?>px;margin:0 auto;}
 .wrap .container {overflow:auto; padding-bottom: 73px;}
 .footer, footer {position: relative;margin-top: -73px;height: 73px;clear:both;}
   
