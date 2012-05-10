@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 // path/to/php5.4 -S localhost:8000 -t . router.php
 
