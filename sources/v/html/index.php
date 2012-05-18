@@ -17,7 +17,7 @@
   <h2>CSS generator:</h2>
   <ul>
     <li><a href="<?php echo URI_BASE ?>/h5/form">Grid generator</a></li>
-    <li><a href="<?php echo URI_BASE ?>/h5">Default CSS</a></li>
+    <li><a href="<?php echo URI_BASE ?>/h5.css">Default CSS</a></li>
   </ul>
 
 </div>
