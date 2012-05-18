@@ -1,11 +1,11 @@
 <?php
 
 //view
-function view($_file, $_vars=array()) {
+function view($_file, $_vars=array(), $_dir = DIR_V) {
   static $_super = array();
   extract($_vars, EXTR_SKIP);
   ob_start();
-  if (file_exists($_file = DIR_V.$_file.'.php')) include $_file;
+  if (file_exists($_file = $_dir.'/'.$_file.'.php')) include $_file;
   else throw new Exception("View `$_file` not found.");
   $ogc = ob_get_clean();
   if ((isset($_decorator) && $_decorator !== false)) $ogc = view($_decorator, array("_content"  => $ogc));
@@ -16,7 +16,7 @@ function view($_file, $_vars=array()) {
 function action($action=null, $_vars = array()) {
   if ($action instanceof Closure) return $action();
   list ($path, $action) = explode(':', $action, 2) + array('', '');
-  if (file_exists($file = DIR_C.$path.'.php')) {
+  if (file_exists($file = DIR_C.'/'.$path.'.php')) {
     if (!$action) { extract($_vars, EXTR_SKIP); return require $file; }
     require_once $file;
     if (trim($action, ':') && $action[0] == ':') {

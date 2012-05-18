@@ -1,5 +1,5 @@
 <?php
-//php54/php -S localhost:8000 -t . router.php
+// path/to/php5.4 -S localhost:8000 -t . router.php
 
 if (
   preg_match('/\.(?:png|jpg|jpeg|gif)$/',$_SERVER["REQUEST_URI"])

@@ -9,7 +9,7 @@
  */
 ?>
 /* grid.css */
-.container {width:<?php echo $page_width ?>px;margin:0 auto;}
+.container {width:<?php echo $page_width ?>px;margin-left: auto;margin-right: auto;}
 .showgrid {background:url(/assets/i/grid.png);}
 .q {margin-left: <?php echo $gutter ?>px }
 .s {margin-right: <?php echo $gutter ?>px}

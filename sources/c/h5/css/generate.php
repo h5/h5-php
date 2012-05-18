@@ -10,7 +10,7 @@
  *    )));
  */
 
-if ($_vars === false) $_vars = $_GET;
+if (empty($_vars)) $_vars = $_GET;
 
 $defaults = array
   ( 'nb' => 48

@@ -6,15 +6,24 @@ hr.space {background:#fff; color:#fff; visibility:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
 
- /* sticky footer */
-html, body {height: 100%;}
-.wrap {min-height: 100%;}
-.wrap .container {overflow:auto; padding-bottom: 73px;}
-.footer, footer {position: relative;margin-top: -73px;height: 73px;clear:both;}
-  
-/*Opera Fix*/
-body:before {content:"";height:100%;float:left;width:0;margin-top:-32767px;}
+/* sticky footer by Ryan Fait http://ryanfait.com/ */
+html, body {
+  height: 100%;
+}
+
+body > div {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -75px;
+}
+
+footer, .im-useful-sticky-helper {
+  height: 75px;
+  clear: both;
+}
+/* EOF sticky footer */
+
 .color1 {background-color: #feffc6}
 .color2 {background-color: #e4fcfc}
 .color3 {background-color: #ffe3e3}
-
