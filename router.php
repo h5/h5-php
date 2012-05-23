@@ -2,7 +2,7 @@
 // path/to/php5.4 -S localhost:8000 -t . router.php
 
 if (
-  preg_match('/\.(?:png|jpg|jpeg|gif)$/',$_SERVER["REQUEST_URI"])
+  preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/',$_SERVER["REQUEST_URI"])
   AND
   file_exists(__DIR__ . '/' . $_SERVER['REQUEST_URI'])
 )
