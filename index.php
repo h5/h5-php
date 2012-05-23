@@ -14,4 +14,4 @@ $routes = array(
 );
 
 
-return action('h5/route', array('routes' => $routes));
+return action(action('h5/route', array('routes' => $routes)));
