@@ -12,21 +12,19 @@ function view($_file, $_vars=array(), $_dir = DIR_V) {
   return $ogc;
 }
 
-//controller path/to/file, path/to/file:function, path/to/class::static, path/to/class:::non-static
+//controller path/to/file, path/to/class::method
 function action($action=null, $_vars = array()) {
   if ($action instanceof Closure) return $action();
   list ($path, $action) = explode(':', $action, 2) + array('', '');
   if (file_exists($file = DIR_C.'/'.$path.'.php')) {
     if (!$action) { extract($_vars, EXTR_SKIP); return require $file; }
     require_once $file;
-    if (trim($action, ':') && $action[0] == ':') {
-      $path = explode('/', $path);
-      if (class_exists($class = end($path))) {
-        if($action[1] == ':') $class = new $class;
-        $action = array($class,  trim($action, ':'));
-      }
+    try {
+      $class = substr($path,strrpos($path, '/')+1);
+      $method = new ReflectionMethod($class, $action);
+      return $method->invokeArgs($method->isStatic() ? null : new $class, $_vars);
     }
-    if (is_callable($action)) return call_user_func_array($action, $_vars);
+    catch (Exception $e){}
   }
   echo view('http/404', array('error' => 'Controller not found')); return false;
 }
