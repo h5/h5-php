@@ -6,8 +6,9 @@ else $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 
 
 define('METHOD', $method);
 
+$actions = array('');
+
 foreach ($routes as $rule => $action) {
-    $action = (array)$action + array(null);
     list($method, $reg) = explode(' ', $rule, 2) + array('GET', '.*');
     $uri = explode('?', $_SERVER['REQUEST_URI']);
 
@@ -16,8 +17,17 @@ foreach ($routes as $rule => $action) {
         &&
         preg_match('/'.str_replace('/','\/',$reg).'/', $uri[0], $matches)
     ) {
-        foreach ($matches as $k => $match) if (is_string($k)) $_GET[$k] = $match;
-        return $action[0];
+      foreach ($matches as $k => $match) {
+        if (is_string($k)) $_GET[$k] = $match;
+      }
+
+      $actions = (array)$action;
+
+      break;
     }
 }
-return null;
+
+foreach ($actions as $action) {
+  $result = action($action);
+  if (false === $result) break;
+}

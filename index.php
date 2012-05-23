@@ -3,14 +3,14 @@ require_once 'sources/h5.php';
 
 $routes = array(
 
-  'GET ^/h5/form$'             => array('h5/css/form'),
-  'GET ^/h5\.css'              => array('h5/css/generate'),
+  'GET ^/h5/form$'              => 'h5/css/form',
+  'GET ^/h5\.css'               => 'h5/css/generate',
 
-  'GET ^/(?<page>[\w-]+).html$' => array('html'),
-  'GET ^/$'                     => array('html'),
+  'GET ^/(?<page>[\w-]+).html$' => 'html',
+  'GET ^/$'                     => 'html',
 
-  '.*' => array(null),
+  //'GET .*'                      => 'h5/test',
 );
 
 
-return action(action('h5/route', array('routes' => $routes)));
+return action('h5/route', array('routes' => $routes));
