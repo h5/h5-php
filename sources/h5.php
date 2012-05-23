@@ -61,6 +61,6 @@ function wtf() {
   else var_dump(array_slice(debug_backtrace(), 1, 5));
   echo $hr = str_repeat('-', 80), PHP_EOL;
   for ($t = debug_backtrace(), $c = current($t); $c && key($t) < 5; $c = next($t))
-    echo key($t)+1, '. ', array_walk($c, function(&$a) { !is_object($a) and print $a.' ';}) and null, PHP_EOL;
+    echo key($t)+1, '. ', @implode(' ', $c), PHP_EOL;
   die($hr.PHP_EOL.date('r').PHP_EOL);
 }
