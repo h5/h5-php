@@ -1,5 +1,4 @@
 <?php
-require_once 'sources/cfg.php';
 require_once 'sources/h5.php';
 
 $routes = array(
