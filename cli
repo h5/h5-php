@@ -12,8 +12,6 @@ foreach (array_slice($argv, 1) as $v)
   }
 unset($v, $arr);
 
-require 'sources/cfg.php';
-
 require 'sources/h5.php';
 
 action(@$_GET[0]);
