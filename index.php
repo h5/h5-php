@@ -1,19 +1,20 @@
 <?php
-require_once 'sources/cfg.php';
 require_once 'sources/h5.php';
+
+$slug = '[\w-/]+';
 
 $routes = array(
 
-  '^/h5/form$'      => array('h5/css/form', 'get'),
-  '^/h5\.css'       => array('h5/css/generate', 'get'),
+  'GET ^/h5/form$'              => 'h5/css/form',
+  'GET ^/h5\.css'               => 'h5/css/generate',
 
-   '^/hello/(?<world>[\w-]+)$'       => array('hello', 'get'),
+  "GET ^/(?<file>$slug)\.less$" => 'less',
 
-  '^/(?<page>[\w-]+).html$' => array('html', 'get'),
-  '^/$'                     => array('html', 'get'),
+  "GET ^/(?<page>$slug)\.html$" => 'html',
+  'GET ^/$'                     => 'html',
 
-  '.*' => array(null),
+  //'GET .*'                      => 'h5/test',
 );
 
 
-return action(action('h5/route', array('routes' => $routes)));
+return action('h5/route', array('routes' => $routes));

@@ -1,4 +1,20 @@
 <?php
+error_reporting(E_ALL | E_STRICT); ini_set("display_errors", 1);
+//error_reporting(0); ini_set("display_errors", 0);
+
+define ('URI_BASE', '');
+define ('URI', PHP_SAPI == 'cli' ? '' : $_SERVER["REQUEST_URI"]);
+
+define ('DIR_WEB'    , getcwd());
+define ('DIR_SOURCES', dirname(__FILE__));
+define ('DIR_M'      , DIR_SOURCES.'/m');
+define ('DIR_V'      , DIR_SOURCES.'/v');
+define ('DIR_C'      , DIR_SOURCES.'/c');
+define ('DIR_Z'      , DIR_SOURCES.'/z');
+
+define('DB_DSN', 'sqlite:'.DIR_SOURCES.'/.db');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
 
 //view
 function view($_file, $_vars=array(), $_dir = DIR_V) {
@@ -12,21 +28,19 @@ function view($_file, $_vars=array(), $_dir = DIR_V) {
   return $ogc;
 }
 
-//controller path/to/file, path/to/file:function, path/to/class::static, path/to/class:::non-static
+//controller path/to/file, path/to/class::method
 function action($action=null, $_vars = array()) {
   if ($action instanceof Closure) return $action();
   list ($path, $action) = explode(':', $action, 2) + array('', '');
   if (file_exists($file = DIR_C.'/'.$path.'.php')) {
     if (!$action) { extract($_vars, EXTR_SKIP); return require $file; }
     require_once $file;
-    if (trim($action, ':') && $action[0] == ':') {
-      $path = explode('/', $path);
-      if (class_exists($class = end($path))) {
-        if($action[1] == ':') $class = new $class;
-        $action = array($class,  trim($action, ':'));
-      }
+    try {
+      $class = substr($path,strrpos($path, '/')+1);
+      $method = new ReflectionMethod($class, $action);
+      return $method->invokeArgs($method->isStatic() ? null : new $class, $_vars);
     }
-    if (is_callable($action)) return call_user_func_array($action, $_vars);
+    catch (Exception $e){}
   }
   echo view('http/404', array('error' => 'Controller not found')); return false;
 }
@@ -47,6 +61,6 @@ function wtf() {
   else var_dump(array_slice(debug_backtrace(), 1, 5));
   echo $hr = str_repeat('-', 80), PHP_EOL;
   for ($t = debug_backtrace(), $c = current($t); $c && key($t) < 5; $c = next($t))
-    echo key($t)+1, '. ', array_walk($c, function(&$a) { !is_object($a) and print $a.' ';}) and null, PHP_EOL;
+    echo key($t)+1, '. ', @implode(' ', $c), PHP_EOL;
   die($hr.PHP_EOL.date('r').PHP_EOL);
 }

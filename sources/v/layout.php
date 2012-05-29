@@ -1,6 +1,7 @@
 <?php $_decorator = 'wrap'; ?>
 
 <div>
+  <?php echo view('header'); ?>
   <div class="container">
     
 <?php echo $_content ?>
