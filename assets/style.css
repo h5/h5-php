@@ -1,3 +1,46 @@
-/* Author:
+/* _ css fw ? */
 
-*/
+[class*="_"]{padding-right:2%;min-height:1em;float:left;box-sizing:border-box;-moz-box-sizing:border-box}
+[class*="_"]:last-child { padding-right: 0;}
+
+._, br{clear:both}
+._1{width:16.666666666666668%}
+._2{width:33.333333333333336%}
+._3{width:50%}
+._4{width:66.66666666666667%}
+._5{width:83.33333333333334%}
+._{width:100%}
+
+/* your styles */
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+.clearfix:after, .container:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow:hidden;
+}
+.clearfix, .container {display: block;}
+
+/* Regular clearing
+   apply to column that should drop below previous ones. */
+
+.clear { clear:both; }
+
+.L {text-align: left;}
+.R {text-align: right;}
+.C {text-align: center;}
+
+body {
+  font: 15px/18px Arial, sans-serif
+}
+
+.container {
+  width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,6 +1,4 @@
 <?php
-require_once 'sources/h5.php';
-
 $routes = array(
 
   'GET ^/h5/form$'              => 'h5/css/form',
@@ -11,8 +9,7 @@ $routes = array(
   'GET ^/(?<page>[\w-]+).html$' => 'html',
   'GET ^/$'                     => 'html',
 
-  //'GET .*'                      => 'h5/test',
+  'GET .*'                      => 'h5/test',
 );
 
-
-return action('h5/route', array('routes' => $routes));
+require_once 'sources/h5.php';

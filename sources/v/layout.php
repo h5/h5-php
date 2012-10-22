@@ -1,13 +1,11 @@
-<?php $_decorator = 'wrap'; ?>
+<?php echo view('header'); ?>
 
-<div>
-  <?php echo view('header'); ?>
-  <div class="container">
-    
-<?php echo $_content ?>
-    
+<div class="container">
+  <div class="_ clearfix">
+    <?php echo $_content ?>
   </div>
-  <div class="im-useful-sticky-helper"></div>
 </div>
 
 <?php echo view('footer'); ?>
+
+<?php $_decorator = 'wrap'; ?>
