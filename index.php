@@ -9,7 +9,7 @@ $routes = array(
   'GET ^/(?<page>[\w-]+).html$' => 'html',
   'GET ^/$'                     => 'html',
 
-  'GET .*'                      => 'h5/test',
+  //'GET .*'                      => 'h5/test',
 );
 
 require_once 'sources/h5.php';
