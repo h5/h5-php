@@ -5,7 +5,7 @@ error_reporting(E_ALL | E_STRICT); ini_set("display_errors", 1);
 define ('URI_BASE', '');
 define ('URI', PHP_SAPI == 'cli' ? '' : $_SERVER["REQUEST_URI"]);
 
-define ('DIR_WEB'    , getcwd());
+define ('DIR_WEB'    , $_SERVER["DOCUMENT_ROOT"]);
 define ('DIR_SOURCES', dirname(__FILE__));
 define ('DIR_M'      , DIR_SOURCES.'/m');
 define ('DIR_V'      , DIR_SOURCES.'/v');
