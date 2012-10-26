@@ -19,7 +19,7 @@ define('DB_PASSWORD', '');
 //view
 function view($_file, $_vars=array(), $_dir = DIR_V) {
   static $_super = array();
-  if (!is_array($_vars)) $_vars=array('var' => $_vars)
+  if (!is_array($_vars)) $_vars = ['var' => $_vars];
   extract($_vars, EXTR_SKIP);
   ob_start();
   if (file_exists($_file = $_dir.'/'.$_file.'.php')) include $_file;
