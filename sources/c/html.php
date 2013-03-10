@@ -1,6 +1,6 @@
 <?php
 /**
- * This controller echoes a simple html placed in 'html' view folder decoreted with layout 'layout'
+ * This controller echoes a simple html placed in 'html' view folder decorated with layout 'layout'
  */
 $page = isset($_GET['page']) ? preg_replace('/[^a-z1-9\/\\\]/i','', $_GET['page']) : 'index';
 try {
