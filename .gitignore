@@ -2,3 +2,4 @@ cache
 .idea
 nbproject
 sources/*.db
+assets/style.css
