@@ -13,3 +13,5 @@ $routes = array(
 );
 
 require_once 'sources/h5.php';
+
+require_once 'sources/route.php';
