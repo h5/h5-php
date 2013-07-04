@@ -2,4 +2,4 @@
 
 header('Content-type: application/json');
 
-if (isset($json) && is_array($json)) echo json_encode($json);
+if (isset($data)) echo json_encode($data);
