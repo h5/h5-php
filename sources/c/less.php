@@ -13,7 +13,12 @@ try {
   if (!is_file($in))
     exit ("/*File `$file.less` does not exists*/");
 
-  lessc::ccompile($in, $out);
+	$less = new lessc;
+	if (DEBUG) {
+		$less->compileFile($in, $out);
+	}
+	else $less->checkedCompile($in, $out);
+	
   echo file_get_contents($out);
 
 } catch (exception $ex) {
