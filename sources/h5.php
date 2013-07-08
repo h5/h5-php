@@ -41,7 +41,7 @@ function action($action=null, $_vars = array()) {
     if (!$action) { extract($_vars, EXTR_SKIP); return require $file; }
     require_once $file;
     try {
-			$class = $path;
+			$class = strpos($path, '/') === false ? $path : trim(strrchr($path, '/'), '/ ');
 			$method = new ReflectionMethod($class, $action);
 			return $method->invokeArgs($method->isStatic() ? null : new $class, $_vars);
     }

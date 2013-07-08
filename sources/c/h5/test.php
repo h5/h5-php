@@ -11,4 +11,4 @@ class test {
          public function object_method()         { echo __METHOD__ . PHP_EOL; }
 }
 
-echo __FILE__ . PHP_EOL;
+echo __FILE__;
