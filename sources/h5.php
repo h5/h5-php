@@ -70,9 +70,7 @@ function wtf() {
   die($hr.PHP_EOL.date('r').PHP_EOL);
 }
 
-function __autoload($class_name)
-{
-	//class directories
+function __autoload($class_name) {
 	$directories = array(
 		DIR_M,
 		DIR_S,
