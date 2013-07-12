@@ -1,1 +1,6 @@
 deny from all
+
+<Files setup.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
