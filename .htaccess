@@ -3,4 +3,4 @@ RewriteEngine On
 RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule .? sources/setup.php [L]
+RewriteRule .? sources/web.php [L]

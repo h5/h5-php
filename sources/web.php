@@ -10,3 +10,5 @@ $routes = array(
 );
 
 require_once 'h5.php';
+
+action('h5/route/web', ['routes' => $routes]);

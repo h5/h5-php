@@ -1,6 +1,6 @@
 deny from all
 
-<Files setup.php>
+<Files web.php>
     Order Allow,Deny
     Allow from all
 </Files>
