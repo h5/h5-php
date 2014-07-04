@@ -52,11 +52,17 @@ function action($action=null, $_vars = array()) {
 
 //model
 function pdo() {
-  static $p = false;
-  if ($p === false)
-    try { $p = new PDO(DB_DSN, DB_USER, DB_PASSWORD); $p->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); }
-    catch (PDOException $e) { view('http/500', array('error' => $e->getMessage())); }
-  return $p;
+    static $p = false;
+    if ($p === false) {
+        try {
+            $p = new PDO(DB_DSN, DB_USER, DB_PASSWORD); $p->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        }
+        catch (PDOException $e) {
+            echo view('http/500', array('error' => $e->getMessage()));
+            die;
+        }
+    }
+    return $p;
 }
 
 //wtf?
